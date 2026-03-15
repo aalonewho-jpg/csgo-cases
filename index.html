@@ -8,20 +8,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app" id="app">
-        <!-- Хедер с логотипом (кликабельный) -->
-        <div class="header" id="header" onclick="window.navigation.goHome()">
+    <div class="app">
+        <!-- Хедер с логотипом -->
+        <div class="header" id="header">
             <div class="logo-container">
                 <div class="logo-triangle">
-                    <svg width="44" height="44" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M30 5L55 45H5L30 5Z" fill="url(#gradient)" stroke="#4da6ff" stroke-width="2.5"/>
+                    <svg width="44" height="44" viewBox="0 0 60 60">
+                        <path d="M30 5L55 45H5L30 5Z" fill="#4da6ff" stroke="#b8e2ff" stroke-width="2.5"/>
                         <text x="30" y="38" text-anchor="middle" fill="white" font-size="24" font-weight="900" font-family="Arial Black">TC</text>
-                        <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#1a4d8c"/>
-                                <stop offset="100%" stop-color="#0066cc"/>
-                            </linearGradient>
-                        </defs>
                     </svg>
                 </div>
                 <div class="graffiti-title">
@@ -31,184 +25,156 @@
             </div>
         </div>
 
-        <!-- Навигационные страницы -->
         <div class="content" id="content">
-            <!-- Главная страница -->
+            <!-- Главная -->
             <div class="page active" id="homePage">
-                <!-- Баланс карточка -->
-                <div class="balance-card-modern">
+                <div class="balance-card">
                     <div class="balance-left">
                         <div class="balance-label">Баланс</div>
-                        <div class="balance-value-wrapper">
-                            <span class="balance-number" id="balanceDisplay">0</span>
-                            <span class="diamond-blue">💎</span>
+                        <div class="balance-value">
+                            <span class="balance-number" id="balanceDisplay">1250</span>
+                            <span class="diamond">💎</span>
                         </div>
                     </div>
-                    <button class="refill-button" id="refillBtn">
-                        <span>Пополнить</span>
-                        <div class="shimmer"></div>
-                    </button>
+                    <button class="refill-btn" id="refillBtn">Пополнить</button>
                 </div>
 
-                <!-- ТОП задания (как на скрине) -->
-                <div class="top-tasks">
-                    <h3 class="tasks-header">ТОП задания</h3>
+                <div class="tasks-section">
+                    <h3>ТОП задания</h3>
                     
                     <div class="task-item">
                         <div class="task-info">
-                            <span class="task-title">Пригласить друга</span>
-                            <span class="task-limit">Без ограничений</span>
+                            <div class="task-title">Пригласить друга</div>
+                            <div class="task-limit">Без ограничений</div>
                         </div>
-                        <div class="task-reward">
-                            <span>+1000</span>
-                            <span class="medal">🏅</span>
-                        </div>
+                        <div class="task-reward">+1000 🏅</div>
                     </div>
 
-                    <div class="task-section-header">Ежедневная халва</div>
+                    <div class="subtitle">Ежедневная халва</div>
 
                     <div class="task-item">
                         <div class="task-info">
-                            <span class="task-title">Добавь бота в имя в Telegram</span>
-                            <span class="task-limit">Ежедневно</span>
+                            <div class="task-title">Добавь бота в имя в Telegram</div>
+                            <div class="task-limit">Ежедневно</div>
                         </div>
-                        <div class="task-reward">
-                            <span>+50</span>
-                            <span class="medal">🏅</span>
-                        </div>
+                        <div class="task-reward">+50 🏅</div>
                     </div>
 
                     <div class="task-item">
                         <div class="task-info">
-                            <span class="task-title">Замени аватарку в Telegram</span>
-                            <span class="task-limit">Ежедневно</span>
+                            <div class="task-title">Замени аватарку в Telegram</div>
+                            <div class="task-limit">Ежедневно</div>
                         </div>
-                        <div class="task-reward">
-                            <span>+50</span>
-                            <span class="medal">🏅</span>
-                        </div>
+                        <div class="task-reward">+50 🏅</div>
                     </div>
 
                     <div class="task-item">
                         <div class="task-info">
-                            <span class="task-title">Добавь бота в имя в Steam</span>
-                            <span class="task-limit">Ежедневно</span>
+                            <div class="task-title">Добавь бота в имя в Steam</div>
+                            <div class="task-limit">Ежедневно</div>
                         </div>
-                        <div class="task-reward">
-                            <span>+50</span>
-                            <span class="medal">🏅</span>
-                        </div>
+                        <div class="task-reward">+50 🏅</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Страница инвентаря -->
+            <!-- Инвентарь -->
             <div class="page" id="inventoryPage">
-                <div class="inventory-filters">
-                    <button class="filter-btn active">Проданы</button>
-                    <button class="filter-btn">Сейчас</button>
-                    <button class="filter-btn">Все</button>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="sold">Проданы</button>
+                    <button class="filter-btn" data-filter="current">Сейчас</button>
+                    <button class="filter-btn" data-filter="all">Все</button>
                 </div>
-                <div class="inventory-grid" id="inventoryGrid">
-                    <!-- Скины будут добавляться через js -->
-                </div>
+                <div class="inventory-grid" id="inventoryGrid"></div>
             </div>
 
-            <!-- Страница Разное -->
+            <!-- Разное -->
             <div class="page" id="miscPage">
-                <h3 class="misc-header">Разное</h3>
+                <h2 class="page-title">Разное</h2>
                 <div class="misc-grid">
-                    <div class="misc-card blue-card" onclick="window.navigation.showCases()">
-                        <span class="misc-icon">📦</span>
+                    <div class="misc-card" data-page="cases">
+                        <div class="misc-icon">📦</div>
                         <span>Кейсы</span>
                     </div>
-                    <div class="misc-card purple-card">
-                        <span class="misc-icon">⬆️</span>
+                    <div class="misc-card">
+                        <div class="misc-icon">⬆️</div>
                         <span>Апгрейдер</span>
                     </div>
-                    <div class="misc-card pink-card">
-                        <span class="misc-icon">📄</span>
+                    <div class="misc-card">
+                        <div class="misc-icon">📄</div>
                         <span>Контракты</span>
                     </div>
-                    <div class="misc-card gold-card">
-                        <span class="misc-icon">🛒</span>
+                    <div class="misc-card">
+                        <div class="misc-icon">🛒</div>
                         <span>Магазин</span>
                     </div>
                 </div>
-                <div class="soon-label">СКОРО</div>
+                <div class="soon">СКОРО</div>
             </div>
 
-            <!-- Страница кейсов -->
+            <!-- Кейсы -->
             <div class="page" id="casesPage">
                 <div class="cases-header">
-                    <span class="cases-title">Кейсы</span>
+                    <h2>Кейсы</h2>
                     <div class="header-balance">
-                        <span id="casesBalance">0</span>
-                        <span class="diamond-blue">💎</span>
+                        <span id="casesBalance">1250</span>
+                        <span class="diamond">💎</span>
                     </div>
                 </div>
                 
-                <div class="cases-scroll">
-                    <div class="case-category">
-                        <div class="category-title">ALLIN</div>
-                        <div class="case-row">
-                            <div class="case-item" data-price="750">
-                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Bluecase" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/0066cc/ffffff?text=BLUE'">
-                                <span class="case-name">BLUECASE</span>
-                                <span class="case-price">750 💎</span>
-                            </div>
-                            <div class="case-item" data-price="25000">
-                                <img src="https://i.imgur.com/7vFqQxR.png" alt="All In" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/1a4d8c/ffffff?text=ALLIN'">
-                                <span class="case-name">All In Case</span>
-                                <span class="case-price">25000 💎</span>
-                            </div>
+                <div class="cases-list">
+                    <div class="category">ALLIN</div>
+                    <div class="cases-row">
+                        <div class="case-item" data-price="750" data-name="BLUECASE">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%234da6ff' rx='10'/%3E%3Ctext x='40' y='45' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3EBLUE%3C/text%3E%3C/svg%3E">
+                            <span class="case-name">BLUECASE</span>
+                            <span class="case-price">750 💎</span>
+                        </div>
+                        <div class="case-item" data-price="25000" data-name="All In Case">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%233d6eff' rx='10'/%3E%3Ctext x='40' y='45' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3EALL%3C/text%3E%3C/svg%3E">
+                            <span class="case-name">All In Case</span>
+                            <span class="case-price">25000 💎</span>
                         </div>
                     </div>
 
-                    <div class="case-category">
-                        <div class="category-title">OLD</div>
-                        <div class="case-row">
-                            <div class="case-item" data-price="87500">
-                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Old School" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/4d4d4d/ffffff?text=OLD'">
-                                <span class="case-name">Old School Case</span>
-                                <span class="case-price">87500 💎</span>
-                            </div>
+                    <div class="category">OLD</div>
+                    <div class="cases-row">
+                        <div class="case-item" data-price="87500" data-name="Old School Case">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23949494' rx='10'/%3E%3Ctext x='40' y='45' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3EOLD%3C/text%3E%3C/svg%3E">
+                            <span class="case-name">Old School Case</span>
+                            <span class="case-price">87500 💎</span>
                         </div>
                     </div>
 
-                    <div class="case-category">
-                        <div class="category-title">RICHGUY</div>
-                        <div class="case-row">
-                            <div class="case-item" data-price="1250000">
-                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Rich Guy" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/ffd700/000000?text=RICH'">
-                                <span class="case-name">Rich Guy Case</span>
-                                <span class="case-price">1250000 💎</span>
-                            </div>
+                    <div class="category">RICHGUY</div>
+                    <div class="cases-row">
+                        <div class="case-item" data-price="1250000" data-name="Rich Guy Case">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23ffd966' rx='10'/%3E%3Ctext x='40' y='45' text-anchor='middle' fill='black' font-size='12' font-family='Arial'%3ERICH%3C/text%3E%3C/svg%3E">
+                            <span class="case-name">Rich Guy Case</span>
+                            <span class="case-price">1250000 💎</span>
                         </div>
                     </div>
 
-                    <div class="case-category">
-                        <div class="category-title">SCHOOL</div>
-                        <div class="case-row">
-                            <div class="case-item" data-price="500">
-                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Budget" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/2d5a27/ffffff?text=BUDGET'">
-                                <span class="case-name">BUDGET</span>
-                                <span class="case-price">500 💎</span>
-                            </div>
-                            <div class="case-item" data-price="300">
-                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Consumer" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/2d5a27/ffffff?text=CONSUMER'">
-                                <span class="case-name">CONSUMER</span>
-                                <span class="case-price">300 💎</span>
-                            </div>
+                    <div class="category">SCHOOL</div>
+                    <div class="cases-row">
+                        <div class="case-item" data-price="500" data-name="BUDGET">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%2336a836' rx='10'/%3E%3Ctext x='40' y='45' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3EBUD%3C/text%3E%3C/svg%3E">
+                            <span class="case-name">BUDGET</span>
+                            <span class="case-price">500 💎</span>
+                        </div>
+                        <div class="case-item" data-price="300" data-name="CONSUMER">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%232e8b57' rx='10'/%3E%3Ctext x='40' y='45' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3ECON%3C/text%3E%3C/svg%3E">
+                            <span class="case-name">CONSUMER</span>
+                            <span class="case-price">300 💎</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Страница профиля (заглушка) -->
+            <!-- Профиль -->
             <div class="page" id="profilePage">
                 <div class="coming-soon">
-                    <span class="soon-icon">👤</span>
+                    <div class="soon-icon">👤</div>
                     <h3>Профиль</h3>
                     <p>В разработке</p>
                 </div>
@@ -217,35 +183,25 @@
 
         <!-- Нижняя навигация -->
         <div class="bottom-nav">
-            <button class="nav-btn active" data-page="home">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-label">Главная</span>
-            </button>
-            <button class="nav-btn" data-page="inventory">
-                <span class="nav-icon">🎒</span>
-                <span class="nav-label">Инвентарь</span>
-            </button>
-            <button class="nav-btn" data-page="misc">
-                <span class="nav-icon">🔀</span>
-                <span class="nav-label">Разное</span>
-            </button>
-            <button class="nav-btn" data-page="profile">
-                <span class="nav-icon">👤</span>
-                <span class="nav-label">Профиль</span>
-            </button>
+            <button class="nav-btn active" data-page="home">🏠 Главная</button>
+            <button class="nav-btn" data-page="inventory">🎒 Инвентарь</button>
+            <button class="nav-btn" data-page="misc">🔀 Разное</button>
+            <button class="nav-btn" data-page="profile">👤 Профиль</button>
         </div>
 
-        <!-- Модалка результата открытия кейса -->
-        <div class="modal" id="caseResultModal">
+        <!-- Модалка результата -->
+        <div class="modal" id="resultModal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3>Результат</h3>
-                    <button class="modal-close" onclick="window.cases.closeModal()">✕</button>
+                    <button class="close-btn" id="closeModal">✕</button>
                 </div>
-                <div class="modal-body" id="caseResultBody">
-                    <!-- Динамический контент -->
+                <div class="modal-body" id="modalBody">
+                    <img src="" alt="" id="resultImage">
+                    <h3 id="resultName"></h3>
+                    <p id="resultPrice"></p>
                 </div>
-                <button class="modal-sell-btn" id="sellResultBtn">Продать за 50%</button>
+                <button class="sell-btn" id="sellBtn">Продать за 50%</button>
             </div>
         </div>
     </div>
