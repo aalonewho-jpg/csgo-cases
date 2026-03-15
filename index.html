@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Case Opener</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <h1>🔷 CS:GO CASES</h1>
+            <div class="balance-card">
+                <span>💰 Баланс:</span>
+                <span class="balance-amount" id="balance">1000</span>
+            </div>
+        </div>
+
+        <div class="case-container">
+            <div class="case-preview" id="casePreview">
+                <div class="case-image">
+                    <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf3v3YfzxB08mJmI2bqPx9ZgXUxXJU6MR2j9yY8MCm3wWyqBc_ZWnxdIOVcwE6aVjT_VO8wbrtgcC_vp_JwSEx63Il5H6eyxTtgUFMaAGxrM2twg" alt="Case">
+                </div>
+                <div class="case-info">
+                    <h3>Кейс Operation</h3>
+                    <p>Цена: 250 💎</p>
+                </div>
+            </div>
+
+            <button class="open-btn" id="openCaseBtn">
+                <span>🔓 ОТКРЫТЬ КЕЙС</span>
+            </button>
+        </div>
+
+        <div class="inventory">
+            <h2>🎒 Твой инвентарь</h2>
+            <div class="items-grid" id="inventory"></div>
+        </div>
+
+        <!-- Модальное окно с результатом -->
+        <div class="modal" id="resultModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Результат открытия</h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Здесь будет результат -->
+                </div>
+                <button class="sell-btn" id="sellBtn">💰 Продать за 50%</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
