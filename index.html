@@ -2,57 +2,254 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS:GO Case Opener</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TEST CASES</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app">
-        <div class="header">
-            <h1>🔷 CS:GO CASES</h1>
-            <div class="balance-card">
-                <span>💰 Баланс:</span>
-                <span class="balance-amount" id="balance">1000</span>
+    <div class="app" id="app">
+        <!-- Хедер с логотипом (кликабельный) -->
+        <div class="header" id="header" onclick="window.navigation.goHome()">
+            <div class="logo-container">
+                <div class="logo-triangle">
+                    <svg width="44" height="44" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 5L55 45H5L30 5Z" fill="url(#gradient)" stroke="#4da6ff" stroke-width="2.5"/>
+                        <text x="30" y="38" text-anchor="middle" fill="white" font-size="24" font-weight="900" font-family="Arial Black">TC</text>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#1a4d8c"/>
+                                <stop offset="100%" stop-color="#0066cc"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="graffiti-title">
+                    <span class="title-test">TEST</span>
+                    <span class="title-cases">CASES</span>
+                </div>
             </div>
         </div>
 
-        <div class="case-container">
-            <div class="case-preview" id="casePreview">
-                <div class="case-image">
-                    <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf3v3YfzxB08mJmI2bqPx9ZgXUxXJU6MR2j9yY8MCm3wWyqBc_ZWnxdIOVcwE6aVjT_VO8wbrtgcC_vp_JwSEx63Il5H6eyxTtgUFMaAGxrM2twg" alt="Case">
+        <!-- Навигационные страницы -->
+        <div class="content" id="content">
+            <!-- Главная страница -->
+            <div class="page active" id="homePage">
+                <!-- Баланс карточка -->
+                <div class="balance-card-modern">
+                    <div class="balance-left">
+                        <div class="balance-label">Баланс</div>
+                        <div class="balance-value-wrapper">
+                            <span class="balance-number" id="balanceDisplay">0</span>
+                            <span class="diamond-blue">💎</span>
+                        </div>
+                    </div>
+                    <button class="refill-button" id="refillBtn">
+                        <span>Пополнить</span>
+                        <div class="shimmer"></div>
+                    </button>
                 </div>
-                <div class="case-info">
-                    <h3>Кейс Operation</h3>
-                    <p>Цена: 250 💎</p>
+
+                <!-- ТОП задания (как на скрине) -->
+                <div class="top-tasks">
+                    <h3 class="tasks-header">ТОП задания</h3>
+                    
+                    <div class="task-item">
+                        <div class="task-info">
+                            <span class="task-title">Пригласить друга</span>
+                            <span class="task-limit">Без ограничений</span>
+                        </div>
+                        <div class="task-reward">
+                            <span>+1000</span>
+                            <span class="medal">🏅</span>
+                        </div>
+                    </div>
+
+                    <div class="task-section-header">Ежедневная халва</div>
+
+                    <div class="task-item">
+                        <div class="task-info">
+                            <span class="task-title">Добавь бота в имя в Telegram</span>
+                            <span class="task-limit">Ежедневно</span>
+                        </div>
+                        <div class="task-reward">
+                            <span>+50</span>
+                            <span class="medal">🏅</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-info">
+                            <span class="task-title">Замени аватарку в Telegram</span>
+                            <span class="task-limit">Ежедневно</span>
+                        </div>
+                        <div class="task-reward">
+                            <span>+50</span>
+                            <span class="medal">🏅</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-info">
+                            <span class="task-title">Добавь бота в имя в Steam</span>
+                            <span class="task-limit">Ежедневно</span>
+                        </div>
+                        <div class="task-reward">
+                            <span>+50</span>
+                            <span class="medal">🏅</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <button class="open-btn" id="openCaseBtn">
-                <span>🔓 ОТКРЫТЬ КЕЙС</span>
+            <!-- Страница инвентаря -->
+            <div class="page" id="inventoryPage">
+                <div class="inventory-filters">
+                    <button class="filter-btn active">Проданы</button>
+                    <button class="filter-btn">Сейчас</button>
+                    <button class="filter-btn">Все</button>
+                </div>
+                <div class="inventory-grid" id="inventoryGrid">
+                    <!-- Скины будут добавляться через js -->
+                </div>
+            </div>
+
+            <!-- Страница Разное -->
+            <div class="page" id="miscPage">
+                <h3 class="misc-header">Разное</h3>
+                <div class="misc-grid">
+                    <div class="misc-card blue-card" onclick="window.navigation.showCases()">
+                        <span class="misc-icon">📦</span>
+                        <span>Кейсы</span>
+                    </div>
+                    <div class="misc-card purple-card">
+                        <span class="misc-icon">⬆️</span>
+                        <span>Апгрейдер</span>
+                    </div>
+                    <div class="misc-card pink-card">
+                        <span class="misc-icon">📄</span>
+                        <span>Контракты</span>
+                    </div>
+                    <div class="misc-card gold-card">
+                        <span class="misc-icon">🛒</span>
+                        <span>Магазин</span>
+                    </div>
+                </div>
+                <div class="soon-label">СКОРО</div>
+            </div>
+
+            <!-- Страница кейсов -->
+            <div class="page" id="casesPage">
+                <div class="cases-header">
+                    <span class="cases-title">Кейсы</span>
+                    <div class="header-balance">
+                        <span id="casesBalance">0</span>
+                        <span class="diamond-blue">💎</span>
+                    </div>
+                </div>
+                
+                <div class="cases-scroll">
+                    <div class="case-category">
+                        <div class="category-title">ALLIN</div>
+                        <div class="case-row">
+                            <div class="case-item" data-price="750">
+                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Bluecase" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/0066cc/ffffff?text=BLUE'">
+                                <span class="case-name">BLUECASE</span>
+                                <span class="case-price">750 💎</span>
+                            </div>
+                            <div class="case-item" data-price="25000">
+                                <img src="https://i.imgur.com/7vFqQxR.png" alt="All In" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/1a4d8c/ffffff?text=ALLIN'">
+                                <span class="case-name">All In Case</span>
+                                <span class="case-price">25000 💎</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-category">
+                        <div class="category-title">OLD</div>
+                        <div class="case-row">
+                            <div class="case-item" data-price="87500">
+                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Old School" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/4d4d4d/ffffff?text=OLD'">
+                                <span class="case-name">Old School Case</span>
+                                <span class="case-price">87500 💎</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-category">
+                        <div class="category-title">RICHGUY</div>
+                        <div class="case-row">
+                            <div class="case-item" data-price="1250000">
+                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Rich Guy" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/ffd700/000000?text=RICH'">
+                                <span class="case-name">Rich Guy Case</span>
+                                <span class="case-price">1250000 💎</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-category">
+                        <div class="category-title">SCHOOL</div>
+                        <div class="case-row">
+                            <div class="case-item" data-price="500">
+                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Budget" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/2d5a27/ffffff?text=BUDGET'">
+                                <span class="case-name">BUDGET</span>
+                                <span class="case-price">500 💎</span>
+                            </div>
+                            <div class="case-item" data-price="300">
+                                <img src="https://i.imgur.com/7vFqQxR.png" alt="Consumer" class="case-image" onerror="this.src='https://via.placeholder.com/80x80/2d5a27/ffffff?text=CONSUMER'">
+                                <span class="case-name">CONSUMER</span>
+                                <span class="case-price">300 💎</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Страница профиля (заглушка) -->
+            <div class="page" id="profilePage">
+                <div class="coming-soon">
+                    <span class="soon-icon">👤</span>
+                    <h3>Профиль</h3>
+                    <p>В разработке</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Нижняя навигация -->
+        <div class="bottom-nav">
+            <button class="nav-btn active" data-page="home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Главная</span>
+            </button>
+            <button class="nav-btn" data-page="inventory">
+                <span class="nav-icon">🎒</span>
+                <span class="nav-label">Инвентарь</span>
+            </button>
+            <button class="nav-btn" data-page="misc">
+                <span class="nav-icon">🔀</span>
+                <span class="nav-label">Разное</span>
+            </button>
+            <button class="nav-btn" data-page="profile">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Профиль</span>
             </button>
         </div>
 
-        <div class="inventory">
-            <h2>🎒 Твой инвентарь</h2>
-            <div class="items-grid" id="inventory"></div>
-        </div>
-
-        <!-- Модальное окно с результатом -->
-        <div class="modal" id="resultModal">
+        <!-- Модалка результата открытия кейса -->
+        <div class="modal" id="caseResultModal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Результат открытия</h2>
-                    <button class="close-btn" id="closeModal">&times;</button>
+                    <h3>Результат</h3>
+                    <button class="modal-close" onclick="window.cases.closeModal()">✕</button>
                 </div>
-                <div class="modal-body" id="modalBody">
-                    <!-- Здесь будет результат -->
+                <div class="modal-body" id="caseResultBody">
+                    <!-- Динамический контент -->
                 </div>
-                <button class="sell-btn" id="sellBtn">💰 Продать за 50%</button>
+                <button class="modal-sell-btn" id="sellResultBtn">Продать за 50%</button>
             </div>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
